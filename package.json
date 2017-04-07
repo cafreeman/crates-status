@@ -1,7 +1,7 @@
 {
   "name": "crates-status",
   "version": "0.0.0",
-  "description": "A brand new Glimmer app.",
+  "description": "Crates.io Status Page!",
   "directories": {
     "doc": "doc",
     "test": "tests"
