@@ -1,7 +1,6 @@
 # crates-status
 
-This README outlines the details of collaborating on this Glimmer application.
-A short introduction of this app could easily go here.
+This is an *extremely* rough Glimmer app that is intended to get the ball rolling for a Crates.io status page.
 
 ## Prerequisites
 
@@ -27,6 +26,12 @@ You will need the following things properly installed on your computer.
 
 * `ember build` (development)
 * `ember build --environment production` (production)
+
+### Deployment
+
+This app is currently deployed via [surge.sh](https://surge.sh). To deploy with surge, you will need to install the `surge` CLI with `npm install -g surge`.
+
+You can then deploy using the following command `ember build -prod && surge dist/.`.
 
 ## Further Reading / Useful Links
 
