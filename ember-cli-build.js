@@ -1,10 +1,17 @@
 'use strict';
 
 const GlimmerApp = require('@glimmer/application-pipeline').GlimmerApp;
+const MergeTrees = require('broccoli-merge-trees');
+const Concat = require('broccoli-concat');
 
 module.exports = function(defaults) {
-  let app = new GlimmerApp(defaults, {
+  const app = new GlimmerApp(defaults, {
     // Add options here
+  });
+
+  const styles = Concat('node_modules', {
+    inputFiles: ['bulma/css/bulma.css'],
+    outputFile: 'app.css'
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -20,5 +27,8 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
-  return app.toTree();
+  return new MergeTrees([
+    app.toTree(),
+    styles
+  ], { overwrite: true});
 };
