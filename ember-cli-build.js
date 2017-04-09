@@ -2,20 +2,22 @@
 
 const GlimmerApp = require('@glimmer/application-pipeline').GlimmerApp;
 const MergeTrees = require('broccoli-merge-trees');
-const Concat = require('broccoli-concat');
+const Funnel = require('broccoli-funnel');
+
+class CustomApp extends GlimmerApp {
+  cssTree() {
+    const cssTree = super.cssTree();
+
+    const styles = new Funnel('node_modules', {
+      files: ['bulma/css/bulma.css']
+    });
+
+    return new MergeTrees([cssTree, styles]);
+  }
+}
 
 module.exports = function(defaults) {
-  const app = new GlimmerApp(defaults, {
-    // Add options here
-  });
+  const app = new CustomApp(defaults);
 
-  const styles = Concat('node_modules', {
-    inputFiles: ['bulma/css/bulma.css'],
-    outputFile: 'app.css'
-  });
-
-  return new MergeTrees([
-    app.toTree(),
-    styles
-  ], { overwrite: true});
-};
+  return app.toTree();
+}
