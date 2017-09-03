@@ -1,13 +1,5 @@
-import Component from "@glimmer/component";
-
-import Store from '../../../store';
+import Component from '@glimmer/component';
 
 export default class CratesStatus extends Component {
-  store: Store
-
-  constructor(options) {
-    super(options);
-
-    this.store = new Store();
-  }
+  user = "cratesiostatus"
 }

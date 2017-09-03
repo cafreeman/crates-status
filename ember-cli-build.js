@@ -8,16 +8,21 @@ class CustomApp extends GlimmerApp {
   cssTree() {
     const cssTree = super.cssTree();
 
-    const styles = new Funnel('node_modules', {
-      files: ['bulma/css/bulma.css']
-    });
+    const styles = new Funnel(
+      'node_modules',
+      {
+        files: ['bulma/css/bulma.css']
+      }
+    );
 
     return new MergeTrees([cssTree, styles]);
   }
 }
 
 module.exports = function(defaults) {
-  const app = new CustomApp(defaults);
+  let app = new CustomApp(defaults, {
+    // Add options here
+  });
 
   return app.toTree();
-}
+};
